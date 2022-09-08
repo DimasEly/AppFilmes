@@ -1,6 +1,5 @@
 # AppFilmes
 
-TESTE 123
 IMPORTANTE!
 Criar um repository no Github:
 
