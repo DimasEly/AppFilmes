@@ -1,79 +1,45 @@
 package br.com.alura.appfilmes.recyclerview.adapter
 
-import android.content.Context
 import android.view.LayoutInflater
-import android.view.View.GONE
-import android.view.View.VISIBLE
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import br.com.alura.appfilmes.databinding.FilmeItemBinding
 import br.com.alura.appfilmes.webclient.model.Filme
+import com.bumptech.glide.Glide
 
 
-class ListaFilmesAdapter(
-    private val context: Context,
-    var quandoClicaNoItem: (filme: Filme) -> Unit = {},
-    notas: List<Nota> = emptyList()
-) : RecyclerView.Adapter<ListaNotasAdapter.ViewHolder>() {
+class ListaFilmesAdapter : RecyclerView.Adapter<ListaFilmesAdapter.ViewHolder>(){
 
-    private val notas = notas.toMutableList()
+    val listaFilmesAdapter : ArrayList<Filme> = arrayListOf()
 
-    class ViewHolder(
-        private val binding: NotaItemBinding,
-        private val quandoClicaNoItem: (nota: Nota) -> Unit
-    ) : RecyclerView.ViewHolder(binding.root) {
+    inner class ViewHolder (private val binding : FilmeItemBinding) : RecyclerView.ViewHolder(binding.root){
 
-        private lateinit var nota: Nota
+        fun bind(filme : Filme){
+            binding.filmeItemTitulo.text = filme.titulo
+            binding.filmeItemDataLanAmento.text = filme.dataLancamento
+            binding.filmeItemLinguaOriginal.text = filme.linguagem
 
-        init {
-            itemView.setOnClickListener {
-                if (::nota.isInitialized) {
-                    quandoClicaNoItem(nota)
-                }
-            }
+            val imageUrl = ("https://image.tmdb.org/t/p/w400${filme.imagemVertical}")
+            Glide.with(binding.root).load(imageUrl).into(binding.filmeItemImagem)
+
         }
-
-        fun vincula(nota: Nota) {
-            this.nota = nota
-            val imagemNota = binding.notaItemImagem
-            imagemNota.visibility =
-                if (nota.imagem.isNullOrBlank()) {
-                    GONE
-                } else {
-                    imagemNota.tentaCarregarImagem(nota.imagem)
-                    VISIBLE
-                }
-            binding.notaItemTitulo.text = nota.titulo
-            binding.notaItemDescricao.text = nota.descricao
-        }
-
     }
 
-    override fun onCreateViewHolder(
-        parent: ViewGroup,
-        viewType: Int
-    ): ViewHolder =
-        ViewHolder(
-            NotaItemBinding
-                .inflate(
-                    LayoutInflater.from(context)
-                ),
-            quandoClicaNoItem
-        )
-
-    override fun onBindViewHolder(
-        holder: ViewHolder,
-        position: Int
-    ) {
-        holder.vincula(notas[position])
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        return ViewHolder(FilmeItemBinding.inflate(LayoutInflater.from(parent.context),parent, false))
     }
 
-    override fun getItemCount(): Int = notas.size
-
-    fun atualiza(notas: List<Nota>) {
-        notifyItemRangeRemoved(0, this.notas.size)
-        this.notas.clear()
-        this.notas.addAll(notas)
-        notifyItemInserted(this.notas.size)
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        holder.bind(listaFilmesAdapter[position])
     }
 
+    override fun getItemCount(): Int {
+        return listaFilmesAdapter.size
+    }
+
+    fun populaAdapter(listaPopulaAdapter : List<Filme>){
+        val oldRangeItens = listaFilmesAdapter.size
+        val newRangeItem = listaPopulaAdapter.size
+        notifyItemRangeInserted(oldRangeItens, newRangeItem)
+    }
 }
