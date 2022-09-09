@@ -1,16 +1,15 @@
 package br.com.alura.appfilmes.webclient.services
 
-import br.com.alura.ceep.webclient.services.NotaService
 import retrofit2.Retrofit
-import retrofit2.converter.moshi.MoshiConverterFactory
+import retrofit2.converter.gson.GsonConverterFactory
 
 class RetrofitInicializador {
 
     private val retrofit: Retrofit = Retrofit.Builder()
-        .baseUrl("http://172.31.138.31:8080/")
-        .addConverterFactory(MoshiConverterFactory.create())
+        .baseUrl("https://api.themoviedb.org/3/")
+        .addConverterFactory(GsonConverterFactory.create())
         .build()
 
-    val notaService = retrofit.create(NotaService::class.java)
+    val notaService = retrofit.create(FilmeService::class.java)
 
 }
