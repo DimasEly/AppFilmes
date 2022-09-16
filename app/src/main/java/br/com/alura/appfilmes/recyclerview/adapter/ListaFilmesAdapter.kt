@@ -10,7 +10,7 @@ import com.bumptech.glide.Glide
 
 class ListaFilmesAdapter : RecyclerView.Adapter<ListaFilmesAdapter.ViewHolder>(){
 
-    val listaFilmesAdapter : ArrayList<Filme> = arrayListOf()
+    val listaFilmesAdapter : MutableList<Filme> = mutableListOf()
 
     inner class ViewHolder (private val binding : FilmeItemBinding) : RecyclerView.ViewHolder(binding.root){
 
@@ -38,8 +38,8 @@ class ListaFilmesAdapter : RecyclerView.Adapter<ListaFilmesAdapter.ViewHolder>()
     }
 
     fun populaAdapter(listaPopulaAdapter : List<Filme>){
-        val oldRangeItens = listaFilmesAdapter.size
-        val newRangeItem = listaPopulaAdapter.size
-        notifyItemRangeInserted(oldRangeItens, newRangeItem)
+        listaFilmesAdapter.clear()
+        listaFilmesAdapter.addAll(listaPopulaAdapter)
+        notifyDataSetChanged()
     }
 }
