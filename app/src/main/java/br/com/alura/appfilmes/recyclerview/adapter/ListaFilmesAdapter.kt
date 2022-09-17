@@ -15,11 +15,7 @@ class ListaFilmesAdapter : RecyclerView.Adapter<ListaFilmesAdapter.ViewHolder>()
     inner class ViewHolder (private val binding : FilmeItemBinding) : RecyclerView.ViewHolder(binding.root){
 
         fun bind(filme : Filme){
-            binding.filmeItemTitulo.text = filme.titulo
-            binding.filmeItemDataLanAmento.text = filme.dataLancamento
-            binding.filmeItemLinguaOriginal.text = filme.linguagem
-
-            val imageUrl = ("https://image.tmdb.org/t/p/w400${filme.imagemVertical}")
+            val imageUrl = ("https://image.tmdb.org/t/p/w500${filme.imagemVertical}")
             Glide.with(binding.root).load(imageUrl).into(binding.filmeItemImagem)
 
         }

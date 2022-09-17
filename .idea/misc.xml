@@ -3,11 +3,16 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/magal/AndroidStudioProjects/AppFilmes/app/src/main/res/drawable/ic_fire_background.xml" value="0.1" />
+        <entry key="..\:/Users/magal/AndroidStudioProjects/AppFilmes/app/src/main/res/drawable/ic_fire_foreground.xml" value="0.1" />
+        <entry key="..\:/Users/magal/AndroidStudioProjects/AppFilmes/app/src/main/res/drawable/ic_home_black_24dp.xml" value="0.1" />
+        <entry key="..\:/Users/magal/AndroidStudioProjects/AppFilmes/app/src/main/res/drawable/ic_notifications_black_24dp.xml" value="0.1" />
         <entry key="..\:/Users/magal/AndroidStudioProjects/AppFilmes/app/src/main/res/layout/activity_main.xml" value="0.22" />
-        <entry key="..\:/Users/magal/AndroidStudioProjects/AppFilmes/app/src/main/res/layout/filme_item.xml" value="0.1" />
+        <entry key="..\:/Users/magal/AndroidStudioProjects/AppFilmes/app/src/main/res/layout/filme_item.xml" value="0.22" />
         <entry key="..\:/Users/magal/AndroidStudioProjects/AppFilmes/app/src/main/res/layout/fragment_dashboard.xml" value="0.1" />
         <entry key="..\:/Users/magal/AndroidStudioProjects/AppFilmes/app/src/main/res/layout/fragment_home.xml" value="0.1" />
         <entry key="..\:/Users/magal/AndroidStudioProjects/AppFilmes/app/src/main/res/layout/fragment_notifications.xml" value="0.1" />
+        <entry key="..\:/Users/magal/AndroidStudioProjects/AppFilmes/app/src/main/res/menu/bottom_nav_menu.xml" value="0.2" />
       </map>
     </option>
   </component>

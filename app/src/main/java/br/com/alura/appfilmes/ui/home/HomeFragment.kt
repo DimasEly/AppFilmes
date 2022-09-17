@@ -10,13 +10,9 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import br.com.alura.appfilmes.FilmeResposta
 import br.com.alura.appfilmes.databinding.FragmentHomeBinding
 import br.com.alura.appfilmes.recyclerview.adapter.ListaFilmesAdapter
 import br.com.alura.appfilmes.webclient.services.RetrofitInicializador
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class HomeFragment : Fragment() {
 
@@ -48,6 +44,7 @@ class HomeFragment : Fragment() {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.RESUMED) {
                 binding.progressBar.isVisible = true
                 val response = RetrofitInicializador().notaService.buscaTodas()
+                RetrofitInicializador().notaService.buscaTodas()
                 binding.progressBar.isVisible = false
                 if (response.isSuccessful) {
                     binding.activityListaNotasRecyclerview.adapter = ListaFilmesAdapter().apply {
