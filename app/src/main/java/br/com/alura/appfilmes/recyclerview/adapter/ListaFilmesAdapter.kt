@@ -9,6 +9,11 @@ import com.bumptech.glide.Glide
 
 
 class ListaFilmesAdapter : RecyclerView.Adapter<ListaFilmesAdapter.ViewHolder>(){
+    private lateinit var mListener : onItemClickListener
+
+    interface onItemClickListener {
+        fun onItemClick(position: Int)
+    }
 
     val listaFilmesAdapter : MutableList<Filme> = mutableListOf()
 
@@ -17,8 +22,19 @@ class ListaFilmesAdapter : RecyclerView.Adapter<ListaFilmesAdapter.ViewHolder>()
         fun bind(filme : Filme){
             val imageUrl = ("https://image.tmdb.org/t/p/w500${filme.imagemVertical}")
             Glide.with(binding.root).load(imageUrl).into(binding.filmeItemImagem)
-
         }
+
+
+        init {
+            itemView.setOnClickListener {
+                mListener.onItemClick(adapterPosition)
+            }
+        }
+    }
+
+    fun setOnItemClickListener(listener: onItemClickListener){
+        mListener = listener
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -38,4 +54,5 @@ class ListaFilmesAdapter : RecyclerView.Adapter<ListaFilmesAdapter.ViewHolder>()
         listaFilmesAdapter.addAll(listaPopulaAdapter)
         notifyDataSetChanged()
     }
+
 }

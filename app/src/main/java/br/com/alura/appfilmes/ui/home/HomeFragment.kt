@@ -1,5 +1,6 @@
 package br.com.alura.appfilmes.ui.home
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,13 +11,16 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import br.com.alura.appfilmes.FilmeInfoActivity
 import br.com.alura.appfilmes.databinding.FragmentHomeBinding
 import br.com.alura.appfilmes.recyclerview.adapter.ListaFilmesAdapter
+import br.com.alura.appfilmes.webclient.model.Filme
 import br.com.alura.appfilmes.webclient.services.RetrofitInicializador
 
 class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
+
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -48,7 +52,15 @@ class HomeFragment : Fragment() {
                 binding.progressBar.isVisible = false
                 if (response.isSuccessful) {
                     binding.activityListaNotasRecyclerview.adapter = ListaFilmesAdapter().apply {
-                        populaAdapter(response.body()?.resultado ?: emptyList())
+                        val listaFilme : List<Filme> = response.body()?.resultado ?: emptyList()
+                        populaAdapter(listaFilme)
+                        setOnItemClickListener(object : ListaFilmesAdapter.onItemClickListener{
+                            override fun onItemClick(position: Int) {
+                            val intent = Intent(context, FilmeInfoActivity::class.java)
+                            intent.putExtra("Filme", listaFilme.get(position))
+                                startActivity(intent)
+                            }
+                        })
                     }
                 }
             }
