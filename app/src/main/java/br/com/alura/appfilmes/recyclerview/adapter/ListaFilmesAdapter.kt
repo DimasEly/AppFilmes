@@ -55,4 +55,6 @@ class ListaFilmesAdapter : RecyclerView.Adapter<ListaFilmesAdapter.ViewHolder>()
         notifyDataSetChanged()
     }
 
+
+
 }

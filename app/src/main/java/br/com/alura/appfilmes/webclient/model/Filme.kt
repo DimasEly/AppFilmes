@@ -5,9 +5,22 @@ import java.io.Serializable
 
 class Filme (
         @SerializedName("id") val id: Int,
-        @SerializedName("tittle") val titulo: String,
-        @SerializedName("release_data") val dataLancamento: String,
-        @SerializedName("original_lenguage") val linguagem: String,
+        @SerializedName("title") val titulo: String,
+        @SerializedName("release_date") val dataLancamento: String,
+        @SerializedName("original_language") val linguagem: String,
         @SerializedName("overview") val sinopse: String,
-        @SerializedName("poster_path") val imagemVertical: String
-        ) : Serializable
+        @SerializedName("poster_path") val imagemVertical: String,
+        @SerializedName("backdrop_path") val imagemPaisagem : String
+        ) : Serializable {
+        val filme: Filme
+                get() = Filme(
+                        id ?: 0,
+                        titulo ?: "",
+                        dataLancamento?: "",
+                        linguagem ?: "",
+                        sinopse ?: "",
+                        imagemVertical ?: "",
+                        imagemPaisagem ?: ""
+                )
+}
+

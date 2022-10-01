@@ -1,7 +1,9 @@
 package br.com.alura.appfilmes.ui.home
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,6 +18,7 @@ import br.com.alura.appfilmes.databinding.FragmentHomeBinding
 import br.com.alura.appfilmes.recyclerview.adapter.ListaFilmesAdapter
 import br.com.alura.appfilmes.webclient.model.Filme
 import br.com.alura.appfilmes.webclient.services.RetrofitInicializador
+import java.io.Serializable
 
 class HomeFragment : Fragment() {
 
@@ -57,7 +60,7 @@ class HomeFragment : Fragment() {
                         setOnItemClickListener(object : ListaFilmesAdapter.onItemClickListener{
                             override fun onItemClick(position: Int) {
                             val intent = Intent(context, FilmeInfoActivity::class.java)
-                            intent.putExtra("Filme", listaFilme.get(position))
+                            intent.putExtra("Filme", listaFilme.get(position) as Serializable)
                                 startActivity(intent)
                             }
                         })

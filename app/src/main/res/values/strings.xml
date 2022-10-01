@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">AppFilmes</string>
+    <string name="app_name">Informações do Filme</string>
     <string name="title_home">Populares</string>
     <string name="title_dashboard">Todos os Filmes</string>
     <string name="title_notifications">Favoritos</string>
