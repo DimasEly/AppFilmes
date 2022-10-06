@@ -54,7 +54,7 @@ class HomeFragment : Fragment() {
                 RetrofitInicializador().notaService.buscaTodas()
                 binding.progressBar.isVisible = false
                 if (response.isSuccessful) {
-                    binding.activityListaNotasRecyclerview.adapter = ListaFilmesAdapter().apply {
+                    binding.activityListaFilmesRecyclerview.adapter = ListaFilmesAdapter().apply {
                         val listaFilme : List<Filme> = response.body()?.resultado ?: emptyList()
                         populaAdapter(listaFilme)
                         setOnItemClickListener(object : ListaFilmesAdapter.onItemClickListener{
