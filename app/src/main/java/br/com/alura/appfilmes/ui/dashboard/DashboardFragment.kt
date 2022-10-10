@@ -22,6 +22,7 @@ import java.io.Serializable
 class DashboardFragment : Fragment() {
 
     private var _binding: FragmentDashboardBinding? = null
+    private val arrayList = arrayListOf<Filme>()
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -41,30 +42,35 @@ class DashboardFragment : Fragment() {
 
         override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
             super.onViewCreated(view, savedInstanceState)
-            val homeViewModel = ViewModelProvider(this).get(DashboardViewModel::class.java)
-            homeViewModel.text.observe(viewLifecycleOwner) {
 
-            }
             viewLifecycleOwner.lifecycleScope.launchWhenStarted {
                 viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.RESUMED) {
-                    binding.progressBar.isVisible = true
-                    val response = RetrofitInicializador().notaService.buscaTodas()
-                    RetrofitInicializador().notaService.buscaTodas()
-                    if (response.isSuccessful) {
-                        binding.activityListaFilmesRecyclerview.adapter = ListaFilmesAdapter().apply {
-                            val listaFilme : List<Filme> = response.body()?.resultado ?: emptyList()
-                            populaAdapter(listaFilme)
-                            setOnItemClickListener(object : ListaFilmesAdapter.onItemClickListener{
-                                override fun onItemClick(position: Int) {
-                                    val intent = Intent(context, FilmeInfoActivity::class.java)
-                                    intent.putExtra("Filme", listaFilme.get(position) as Serializable)
-                                    startActivity(intent)
-                                }
-                            })
+                    binding.progressBar.isVisible = arrayList.isEmpty()
+
+                    if(arrayList.isEmpty()){
+                        val response = RetrofitInicializador().notaService.buscaTodas()
+                        RetrofitInicializador().notaService.buscaTodas()
+                        if (response.isSuccessful) {
+                            binding.progressBar.isVisible = false
+                            setAdapter()
                         }
+                    } else{
+                        setAdapter()
                     }
-                    binding.progressBar.isVisible = false
                 }
+            }
+        }
+
+        private fun setAdapter(){
+            binding.activityListaFilmesRecyclerview.adapter = ListaFilmesAdapter().apply {
+                populaAdapter(arrayList)
+                setOnItemClickListener(object : ListaFilmesAdapter.onItemClickListener{
+                    override fun onItemClick(position: Int) {
+                        val intent = Intent(context, FilmeInfoActivity::class.java)
+                        intent.putExtra("Filme", arrayList.get(position) as Serializable)
+                        startActivity(intent)
+                    }
+                })
             }
         }
 
