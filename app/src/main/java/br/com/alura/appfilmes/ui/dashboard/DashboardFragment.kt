@@ -50,7 +50,6 @@ class DashboardFragment : Fragment() {
                     binding.progressBar.isVisible = true
                     val response = RetrofitInicializador().notaService.buscaTodas()
                     RetrofitInicializador().notaService.buscaTodas()
-                    binding.progressBar.isVisible = false
                     if (response.isSuccessful) {
                         binding.activityListaFilmesRecyclerview.adapter = ListaFilmesAdapter().apply {
                             val listaFilme : List<Filme> = response.body()?.resultado ?: emptyList()
@@ -64,6 +63,7 @@ class DashboardFragment : Fragment() {
                             })
                         }
                     }
+                    binding.progressBar.isVisible = false
                 }
             }
         }

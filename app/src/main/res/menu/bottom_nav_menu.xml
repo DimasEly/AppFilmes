@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
-    android:background="#454545">
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
         android:id="@+id/navigation_home"
@@ -14,7 +13,7 @@
 
     <item
         android:id="@+id/navigation_notifications"
-        android:icon="@drawable/ic_baseline_favorite_24"
+        android:icon="@drawable/ic_baseline_favorite_branco"
         android:title="@string/title_notifications" />
 
 </menu>
