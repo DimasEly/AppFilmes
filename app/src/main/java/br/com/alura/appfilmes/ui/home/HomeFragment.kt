@@ -69,16 +69,15 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
-            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.RESUMED) {
-                setAdapter()
-                setObserver()
-            }
-        }
+        setAdapter()
+        setObserver()
+
+        binding.progressBar.isVisible = arrayList.isEmpty()
     }
 
     private fun setObserver(){
         viewModel.uiEventResponse.observe(viewLifecycleOwner){
+            binding.progressBar.visibility = View.GONE
             arrayList.addAll(it.resultado)
             mainAdapter.populaAdapter(arrayList)
             removeScrollView()
@@ -114,6 +113,7 @@ class HomeFragment : Fragment() {
                     val totalItemVisible = visibleItemCount + pastVisibleItems
                     val totalItemCount = layoutManager.itemCount
                     if (totalItemVisible >= totalItemCount) {
+                        binding.progressBar.visibility = View.VISIBLE
                         viewModel.getMovieFromApi()
                         removeScrollView()
                     }

@@ -48,8 +48,7 @@ class DashboardFragment : Fragment() {
                     binding.progressBar.isVisible = arrayList.isEmpty()
 
                     if(arrayList.isEmpty()){
-                        val response = RetrofitInicializador().notaService.buscaTodas()
-                        RetrofitInicializador().notaService.buscaTodas()
+                        val response = RetrofitInicializador().notaService.buscaTodas(1)
                         if (response.isSuccessful) {
                             binding.progressBar.isVisible = false
                             setAdapter()

@@ -17,7 +17,7 @@ class HomeViewModel : ViewModel() {
     private var currentPage: Int = 1
 
     fun getMovieFromApi() = viewModelScope.launch{
-        val response = RetrofitInicializador().notaService.buscaTodas()
+        val response = RetrofitInicializador().notaService.buscaTodas(currentPage)
 
         if(response.isSuccessful){
             _uiEventResponse.postValue(response.body())
