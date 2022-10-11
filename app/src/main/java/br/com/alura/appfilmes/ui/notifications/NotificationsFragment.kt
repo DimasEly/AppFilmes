@@ -7,6 +7,8 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import br.com.alura.appfilmes.database.FavoritosDatabase
+import br.com.alura.appfilmes.database.dao.FilmeFavoritoDao
 import br.com.alura.appfilmes.databinding.FragmentNotificationsBinding
 
 class NotificationsFragment : Fragment() {
@@ -34,6 +36,8 @@ class NotificationsFragment : Fragment() {
         }
         return root
     }
+
+    
 
     override fun onDestroyView() {
         super.onDestroyView()
