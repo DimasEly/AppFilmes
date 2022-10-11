@@ -25,63 +25,6 @@ import java.io.Serializable
 
 class DashboardFragment : Fragment() {
 
-//    private var _binding: FragmentDashboardBinding? = null
-//    private val arrayList = arrayListOf<Filme>()
-//
-//    // This property is only valid between onCreateView and
-//    // onDestroyView.
-//    private val binding get() = _binding!!
-//
-//        override fun onCreateView(
-//            inflater: LayoutInflater,
-//            container: ViewGroup?,
-//            savedInstanceState: Bundle?
-//        ): View {
-//
-//            _binding = FragmentDashboardBinding.inflate(inflater, container, false)
-//            val root: View = binding.root
-//
-//            return root
-//        }
-//
-//        override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-//            super.onViewCreated(view, savedInstanceState)
-//
-//            viewLifecycleOwner.lifecycleScope.launchWhenStarted {
-//                viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.RESUMED) {
-//                    binding.progressBar.isVisible = arrayList.isEmpty()
-//
-//                    if(arrayList.isEmpty()){
-//                        val response = RetrofitInicializador().notaService.buscaTodas(1)
-//                        if (response.isSuccessful) {
-//                            binding.progressBar.isVisible = false
-//                            setAdapter()
-//                        }
-//                    } else{
-//                        setAdapter()
-//                    }
-//                }
-//            }
-//        }
-//
-//        private fun setAdapter(){
-//            binding.activityListaFilmesRecyclerview.adapter = ListaFilmesAdapter().apply {
-//                populaAdapter(arrayList)
-//                setOnItemClickListener(object : ListaFilmesAdapter.onItemClickListener{
-//                    override fun onItemClick(position: Int) {
-//                        val intent = Intent(context, FilmeInfoActivity::class.java)
-//                        intent.putExtra("Filme", arrayList.get(position) as Serializable)
-//                        startActivity(intent)
-//                    }
-//                })
-//            }
-//        }
-//
-//        override fun onDestroyView() {
-//            super.onDestroyView()
-//            _binding = null
-//        }
-//    }
 
     private var _binding: FragmentDashboardBinding? = null
     private val arrayList = arrayListOf<Filme>()
