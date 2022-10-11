@@ -12,4 +12,8 @@ interface FilmeService {
         @Query("page") current_page : Int,
         @Query("api_key") api_key : String = "9106a44c761c36bbb02f24c16958a56a"
     ): Response<FilmeResposta>
+
+    @GET ("movie/popular")
+    suspend fun buscaPopular(@Query("api_key") api_key : String = "9106a44c761c36bbb02f24c16958a56a"
+    ): Response<FilmeResposta>
 }

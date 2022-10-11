@@ -1,27 +1,19 @@
 package br.com.alura.appfilmes.ui.home
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import br.com.alura.appfilmes.FilmeInfoActivity
-import br.com.alura.appfilmes.databinding.FragmentDashboardBinding
 import br.com.alura.appfilmes.databinding.FragmentHomeBinding
 import br.com.alura.appfilmes.recyclerview.adapter.ListaFilmesAdapter
-import br.com.alura.appfilmes.ui.notifications.NotificationsViewModel
 import br.com.alura.appfilmes.webclient.model.Filme
-import br.com.alura.appfilmes.webclient.services.RetrofitInicializador
 import java.io.Serializable
 
 class HomeFragment : Fragment() {
