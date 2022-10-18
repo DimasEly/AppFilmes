@@ -13,6 +13,7 @@ class ListaFilmesAdapter : RecyclerView.Adapter<ListaFilmesAdapter.ViewHolder>()
 
     interface onItemClickListener {
         fun onItemClick(position: Int)
+        fun onLongItemClick(position: Int)
     }
 
     val listaFilmesAdapter : MutableList<Filme> = mutableListOf()
@@ -28,6 +29,10 @@ class ListaFilmesAdapter : RecyclerView.Adapter<ListaFilmesAdapter.ViewHolder>()
         init {
             itemView.setOnClickListener {
                 mListener.onItemClick(adapterPosition)
+            }
+            itemView.setOnLongClickListener {
+                mListener.onLongItemClick(adapterPosition)
+                false
             }
         }
     }
@@ -53,6 +58,11 @@ class ListaFilmesAdapter : RecyclerView.Adapter<ListaFilmesAdapter.ViewHolder>()
         listaFilmesAdapter.clear()
         listaFilmesAdapter.addAll(listaPopulaAdapter)
         notifyDataSetChanged()
+    }
+
+    fun removeFilme(position: Int){
+        listaFilmesAdapter.removeAt(position)
+        notifyItemRemoved(position)
     }
 
 

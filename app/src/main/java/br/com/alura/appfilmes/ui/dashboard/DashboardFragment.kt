@@ -93,6 +93,10 @@ class DashboardFragment : Fragment() {
                 intent.putExtra("Filme", arrayList.get(position) as Serializable)
                 startActivity(intent)
             }
+
+            override fun onLongItemClick(position: Int) {
+
+            }
         })
     }
 
